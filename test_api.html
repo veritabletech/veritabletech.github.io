@@ -1,12 +1,13 @@
 <html>
 <meta charset="UTF-8">
 <body>
-
+<div id="main">
     <p>Rentrez les informations du certificat que vous voulez créer et appuyez ensuite sur le bouton !</p>
     Nom artiste/de la marque : <input type="text" id="artiste" placeholder="Nom artiste/de la marque"><br>
     Nom de l'oeuvre/du produit : <input type="text" id="oeuvre" placeholder="Nom de l'oeuvre/du produit"><br>
     Clé d'api : <input type="text" id="api" placeholder="Clé d'api" value="demo"><br>
     <button onclick="submit()">Créer le certificat</button>
+</div>
     
     <hr><hr>
     
@@ -17,6 +18,8 @@
 
 <script>
 function submit() {
+    document.getElementById("main").style="display: none";
+    document.getElementById("identifiant").innerHTML = "Certificat en cours de création ...";
     url = "https://veritable.tech/api.php?tirage=unique";
     artiste = document.getElementById("artiste").value; url += "&artiste=" + artiste.toString();
     oeuvre = document.getElementById("oeuvre").value; url += "&oeuvre=" + oeuvre.toString();
