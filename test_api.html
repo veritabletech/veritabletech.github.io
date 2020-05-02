@@ -1,0 +1,38 @@
+<html>
+<meta charset="UTF-8">
+<body>
+
+    <input type="text" id="artiste" placeholder="Nom artiste">
+    <input type="text" id="oeuvre" placeholder="Nom de la marque">
+    <input type="text" id="api" placeholder="Clé d'api" value="demo">
+    <button onclick="submit()">Créer le certificat</button>
+    
+    <hr><hr>
+    
+    <p id="identifiant"></p>
+    <p id="mdp"></p>
+    
+</body>
+
+<script>
+function submit() {
+    url = "http://veritable.tech/api.php?tirage=unique";
+    artiste = document.getElementById("artiste").value; url += "&artiste=" + artiste.toString();
+    oeuvre = document.getElementById("oeuvre").value; url += "&oeuvre=" + oeuvre.toString();
+    api = document.getElementById("api").value; url += "&api=" + api.toString();
+    console.log(url);
+    
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+            var res = this.responseText.split(" ");
+            document.getElementById("identifiant").innerHTML = "L'identifiant de votre certificat est : " + res[0];
+            document.getElementById("mdp").innerHTML = "Le mot de passe de votre certificat est : " + res[1];
+        }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
+</script>    
+</html>
